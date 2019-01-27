@@ -1,0 +1,43 @@
+<head>
+	<title>Where The Heart Is</title>
+	<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+	<script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.1/dist/aframe-extras.min.js"></script>
+	<script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> 
+	<script src="https://rawgit.com/takahirox/aframe-rain/master/build/aframe-rain.min.js"></script>
+	<script src="https://rawgit.com/takahirox/aframe-outline/master/build/aframe-outline.min.js"></script> 
+	<script src="js/aframe-particle-system-component.min.js"></script>
+</head>
+ 
+<body>
+	<a-scene rain outline="thickness: 0.1">
+		<a-assets>
+			<a-asset-item id="fox" src="/assets/fox/scene.gltf"></a-asset-item>
+		</a-assets>
+
+		<a-entity environment="preset: forest; seed: 7; shadow: true; fog: 0.8; playArea: 0; groundTexture: walkernoise; groundYScale: 0.1; lighting: none; skyColor: #001; horizonColor: #112; skyType: color"></a-entity>
+		<a-entity light="type:directional;color:#222" position="10 1 10" angle="20"></a-entity>
+		<a-entity particle-system="texture: /assets/fire_01.png; color: yellow; maxAge: 0.5; size: 50; rotationAngle: -90;" position="-10 -2 -10" scale="5 1 5">
+			<a-light type="point" color="#FF2" intensity="0">
+				<a-animation attribute="intensity" from="1.6" to="2" dur="100" easing="linear" direction="alternate" repeat="indefinite"></a-animation>
+			</a-light>
+		</a-entity>
+		<a-camera position="10 1 -10" look-controls-enabled=false wasd-controls-enabled=false>
+			<a-entity scale="0.02 0.015 0.01" position="0 -1 -2" gltf-model="#fox" animation-mixer="loop: pingpong;">
+			<a-animation attribute="rotation" dur="1000" from="0 0 0" to="0 180 0" delay="25000"></a-animation>
+			</a-entity>
+			<a-animation attribute="position" from="10 1 -10" to="10 1 29" delay="6500" dur="22000"></a-animation>
+		</a-camera>
+		<a-text value="What's happening?" opacity="1" position="11 2 -10">
+			<a-animation attribute="opacity" from="1" to="0" delay="5000" dur="20000"></a-animation>
+		</a-text>
+		<a-text value="Where is everyone?" opacity="1" position="9 2 0">
+			<a-animation attribute="opacity" from="1" to="0" delay="10000" dur="20000"></a-animation>
+		</a-text>
+		<a-text value="Mum?" position="11 2 10">
+			<a-animation attribute="opacity" opacity="1" from="1" to="0" delay="13000" dur="15000"></a-animation>
+		</a-text>
+		<a-text value="Dad?" position="9 2 15">
+			<a-animation attribute="opacity" opacity="1" from="1" to="0" delay="14000" dur="15000"></a-animation>
+		</a-text>
+	</a-scene>
+</body>
